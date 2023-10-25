@@ -4,7 +4,6 @@ import Contacts from "../pages/Contacts/Index";
 import HeaderContextProvider from "../store/Header/HeaderContextProvider";
 import { ApolloProvider } from "@apollo/client";
 import { apolloClient } from "../api/apollo/apolloClient";
-import ContactContextProvider from "../store/Contact/ContactContextProvider";
 import ContactsFavorite from "../pages/ContactsFavorite/Index";
 import ModalContextProvider from "../store/Modal/ModalContextProvider";
 
