@@ -15,7 +15,7 @@ import { LOCAL_STORAGE_ITEM } from "../../enum/localstorageItems";
 import ModalContext from "../../store/Modal/ModalContext";
 import Modal from "../../components/Modal/Modal";
 import EditForm from "../../components/Form/EditForm";
-// import CreateForm from "../../components/Form/CreateForm";
+import CreateForm from "../../components/Form/CreateForm";
 const Body = styled.div<TInputSearch>(({ isSearch }) => ({
   top: !isSearch ? "-35px" : "0px",
   transition: "0.3s",
@@ -102,8 +102,7 @@ const Contacts = () => {
               refetch={refetch}
             />
           ) : (
-            <></>
-            // <CreateForm onCloseModal={setModalOff} refetch={refetch} />
+            <CreateForm onCloseModal={setModalOff} refetch={refetch} />
           )}
         </Modal>
       ) : (
