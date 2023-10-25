@@ -4,7 +4,8 @@
   "description": "Phone Book App ",
   "main": "index.js",
   "scripts": {
-    "start": "webpack server",
+    "compile": "graphql-codegen",
+    "start": "graphql-codegen -w && webpack server ",
     "satrt:watch": "webpack --watch",
     "build": "NODE_ENV=production webpack",
     "test": "jest"
@@ -33,6 +34,7 @@
     "@emotion/styled": "^11.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
     "react-router-dom": "^6.17.0"
   },
   "devDependencies": {
@@ -43,6 +45,9 @@
     "@emotion/babel-plugin": "^11.11.0",
     "@emotion/babel-preset-css-prop": "^11.11.0",
     "@emotion/eslint-plugin": "^11.11.0",
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/client-preset": "^4.1.0",
+    "@graphql-typed-document-node/core": "^3.2.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.0.0",
