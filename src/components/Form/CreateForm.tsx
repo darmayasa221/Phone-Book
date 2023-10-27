@@ -8,42 +8,24 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import styled from "@emotion/styled";
-import { mq } from "../../globalStyles/responsive";
+
 import { useMutation } from "@apollo/client";
 import { ICreateForm, TPhoneInputs } from "../../types/components/Form";
 import { CREATE_CONTACT } from "../../dataProvider/contact";
-const Wrapper = styled.div({
-  background: "var(--second-background-color)",
-  boxShadow: " 0px 6px 10px rgba(0, 0, 0, 0.1)",
-  borderRadius: "12px",
-  position: "fixed",
-  zIndex: 31,
-  width: "320px",
-  height: "400px",
-  display: "flex",
-  flexDirection: "column",
-  padding: "10px 38px",
-  [mq[1] as string]: {
-    width: "490px",
-    height: "355px",
-  },
-});
-const WrapperHeader = styled.div({ display: "flex", justifyContent: "center" });
-const WrapperBody = styled.div({
-  display: "flex",
-  flexDirection: "column",
-});
-const WrapperFooter = styled.div({
-  display: "flex",
-  justifyContent: "center",
-  columnGap: "5rem",
-});
-const CostumeForm = styled.form({
-  display: "flex",
-  flexDirection: "column",
-  rowGap: "1rem",
-});
+import {
+  ButtonCount,
+  CostumeForm,
+  CostumeInput,
+  WrapperBody,
+  WrapperButton,
+  WrapperCountButtons,
+  WrapperFooter,
+  WrapperFormModal,
+  WrapperHeader,
+  WrapperPhoneInput,
+  WrapperPhoneInputs,
+} from "../../globalStyles/form";
+
 const CreateForm: FC<ICreateForm> = ({ onCloseModal, refetch }) => {
   const [createContact, { loading }] = useMutation(CREATE_CONTACT);
   const [count, setCount] = useState<number>(1);
@@ -136,53 +118,72 @@ const CreateForm: FC<ICreateForm> = ({ onCloseModal, refetch }) => {
   }, [loading]);
   console.log("CREATE FORM");
   return (
-    <Wrapper>
+    <WrapperFormModal>
       <CostumeForm onSubmit={onSubmit}>
-        <WrapperHeader>Head</WrapperHeader>
+        <WrapperHeader>
+          <h1>Create Contact</h1>
+        </WrapperHeader>
         <WrapperBody>
-          <label>First Name </label>
-          <input
+          <label htmlFor="firstName">First Name</label>
+          <CostumeInput
+            id="firstName"
             name="firstName"
             onChange={onChangeFistName}
             type="text"
             placeholder="Joe"
             defaultValue={firstName}
           />
-          <label>Last Name </label>
-          <input
+          <label htmlFor="lastName">Last Name</label>
+          <CostumeInput
+            id="lastName"
             name="lastName"
             onChange={onChangeLastName}
             type="text"
             placeholder="Sona"
             defaultValue={lastName}
           />
-          <label>Phone Number </label>
-          {phoneInputs?.map((phone, index) => {
-            console.log(phone);
-            return (
-              <div key={index}>
-                <p>Phone {index + 1} </p>
-                <input
-                  name={`phone-${index}`}
-                  onChange={(event) => {
-                    onChangePhoneNumber(index, event);
-                  }}
-                  type="number"
-                  placeholder="08111111111"
-                  defaultValue={phone?.number}
-                />
-              </div>
-            );
-          })}
-          <button onClick={onHandlerDecreaseInputPhones}>-</button>
-          <button onClick={onHandlerIncreaseInputPhones}>+</button>
+          <label htmlFor="phone">Phone Number</label>
+          <WrapperPhoneInputs>
+            {phoneInputs?.map((phone, index) => {
+              console.log(phone);
+              return (
+                <WrapperPhoneInput key={index}>
+                  <p>Phone {index + 1} </p>
+                  <CostumeInput
+                    id="phone"
+                    name="phone"
+                    onChange={(event) => {
+                      onChangePhoneNumber(index, event);
+                    }}
+                    type="number"
+                    placeholder="08111111111"
+                    defaultValue={phone?.number}
+                  />
+                </WrapperPhoneInput>
+              );
+            })}
+          </WrapperPhoneInputs>
+          <WrapperCountButtons>
+            <ButtonCount onClick={onHandlerIncreaseInputPhones}>+</ButtonCount>
+            {phoneInputs.length > 1 ? (
+              <ButtonCount onClick={onHandlerDecreaseInputPhones}>
+                -
+              </ButtonCount>
+            ) : (
+              <></>
+            )}
+          </WrapperCountButtons>
         </WrapperBody>
         <WrapperFooter>
-          <button onClick={onHandlerClose}>cancel</button>
-          <button>save</button>
+          <WrapperButton>
+            <button onClick={onHandlerClose}>cancel</button>
+          </WrapperButton>
+          <WrapperButton>
+            <button>save</button>
+          </WrapperButton>
         </WrapperFooter>
       </CostumeForm>
-    </Wrapper>
+    </WrapperFormModal>
   );
 };
 

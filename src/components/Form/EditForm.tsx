@@ -8,42 +8,20 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import styled from "@emotion/styled";
-import { mq } from "../../globalStyles/responsive";
 import { useMutation } from "@apollo/client";
 import { UPDATE_CONTACT, UPDATE_NUMBER } from "../../dataProvider/contact";
 import { IEditForm, TPhoneInputs } from "../../types/components/Form";
-const Wrapper = styled.div({
-  background: "var(--second-background-color)",
-  boxShadow: " 0px 6px 10px rgba(0, 0, 0, 0.1)",
-  borderRadius: "12px",
-  position: "fixed",
-  zIndex: 31,
-  width: "320px",
-  height: "400px",
-  display: "flex",
-  flexDirection: "column",
-  padding: "10px 38px",
-  [mq[1] as string]: {
-    width: "490px",
-    height: "355px",
-  },
-});
-const WrapperHeader = styled.div({ display: "flex", justifyContent: "center" });
-const WrapperBody = styled.div({
-  display: "flex",
-  flexDirection: "column",
-});
-const WrapperFooter = styled.div({
-  display: "flex",
-  justifyContent: "center",
-  columnGap: "5rem",
-});
-const CostumeForm = styled.form({
-  display: "flex",
-  flexDirection: "column",
-  rowGap: "1rem",
-});
+import {
+  CostumeForm,
+  CostumeInput,
+  WrapperBody,
+  WrapperButton,
+  WrapperFooter,
+  WrapperFormModal,
+  WrapperHeader,
+  WrapperPhoneInputs,
+} from "../../globalStyles/form";
+
 const EditForm: FC<IEditForm> = ({ onCloseModal, data, refetch }) => {
   console.log(data);
   const [updateContact] = useMutation(UPDATE_CONTACT);
@@ -135,34 +113,39 @@ const EditForm: FC<IEditForm> = ({ onCloseModal, data, refetch }) => {
   }, []);
   console.log("EDIT FORM");
   return (
-    <Wrapper>
+    <WrapperFormModal>
       <CostumeForm onSubmit={onSubmit}>
-        <WrapperHeader>Head</WrapperHeader>
+        <WrapperHeader>
+          <h1>Edit Contact</h1>
+        </WrapperHeader>
         <WrapperBody>
-          <label>First Name </label>
-          <input
+          <label htmlFor="firstName">First Name </label>
+          <CostumeInput
+            id="firstName"
             name="firstName"
             onChange={onChangeFistName}
             type="text"
             placeholder="Joe"
             defaultValue={firstName}
           />
-          <label>Last Name </label>
-          <input
+          <label htmlFor="lastName">Last Name </label>
+          <CostumeInput
+            id="lastName"
             name="lastName"
             onChange={onChangeLastName}
             type="text"
             placeholder="Sona"
             defaultValue={lastName}
           />
-          <label>Phone Number </label>
+          <label htmlFor="phone">Phone Number </label>
           {phoneInputs?.map((phone, index) => {
             console.log(phone);
             return (
-              <div key={index}>
+              <WrapperPhoneInputs key={index}>
                 <p>Phone {index + 1} </p>
-                <input
-                  name={`phone-${index}`}
+                <CostumeInput
+                  id="phone"
+                  name="phone"
                   onChange={(event) => {
                     onChangePhoneNumber(index, event);
                   }}
@@ -170,16 +153,20 @@ const EditForm: FC<IEditForm> = ({ onCloseModal, data, refetch }) => {
                   placeholder="08111111111"
                   defaultValue={phone?.number}
                 />
-              </div>
+              </WrapperPhoneInputs>
             );
           })}
         </WrapperBody>
         <WrapperFooter>
-          <button onClick={onHandlerClose}>cancel</button>
-          <button>save</button>
+          <WrapperButton>
+            <button onClick={onHandlerClose}>cancel</button>
+          </WrapperButton>
+          <WrapperButton>
+            <button>save</button>
+          </WrapperButton>
         </WrapperFooter>
       </CostumeForm>
-    </Wrapper>
+    </WrapperFormModal>
   );
 };
 

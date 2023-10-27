@@ -1,5 +1,6 @@
+import { Dispatch, SetStateAction } from "react";
 import { TNavBar } from "./navBar";
 
 export interface IHamburgerButton extends TNavBar {
-  setMobile(params: boolean): void;
+  setMobile: Dispatch<SetStateAction<boolean>>;
 }

@@ -12,11 +12,9 @@ import HamburgerButton from "./HumbergerButton";
 import { RiUserSearchFill } from "react-icons/ri";
 import NavBar from "./NavBar/NavBar";
 import HeaderContext from "../../store/Header/headerContext";
-import { Link } from "react-router-dom";
-import { MdPersonAddAlt1 } from "react-icons/md";
+import { Link, useLocation } from "react-router-dom";
+import { MdOutlineArrowBack, MdPersonAddAlt1 } from "react-icons/md";
 import ModalContext from "../../store/Modal/ModalContext";
-import Modal from "../Modal/Modal";
-import CreateForm from "../Form/CreateForm";
 const Container = styled.div({
   // backgroundColor: "var(--main-background-color)",
   position: "relative",
@@ -41,6 +39,7 @@ const WrapperLeftSide = styled.div({
   columnGap: "10px",
 });
 const Header = () => {
+  const { pathname } = useLocation();
   const { setModalOn } = useContext(ModalContext);
   const { onHandlerSearch } = useContext(HeaderContext);
   console.log("header component");
@@ -48,18 +47,29 @@ const Header = () => {
   return (
     <>
       <Container>
-        <Link to={"/"}>
-          <Title>Phone Book</Title>
-        </Link>
-        <NavBar isActive={mobile} />
+        {pathname === "/" ? (
+          <></>
+        ) : (
+          <Link style={{ textDecoration: "none", color: "black" }} to={"/"}>
+            <MdOutlineArrowBack size={30} />
+          </Link>
+        )}
+        <Title>Phone Book</Title>
+        <NavBar setMobileOff={setMobile} isActive={mobile} />
         <WrapperLeftSide>
-          <RiUserSearchFill onClick={onHandlerSearch} size={25} />
-          <MdPersonAddAlt1
-            onClick={setModalOn.bind(this, "create")}
-            size={32}
-            style={{ position: "relative", top: "-4px" }}
-          />
-          <HamburgerButton setMobile={setMobile} />
+          {pathname === "/contacts/favorite" ? (
+            <></>
+          ) : (
+            <>
+              <RiUserSearchFill onClick={onHandlerSearch} size={25} />
+              <MdPersonAddAlt1
+                onClick={setModalOn.bind(this, "create")}
+                size={32}
+                style={{ position: "relative", top: "-4px" }}
+              />
+            </>
+          )}
+          <HamburgerButton isActive={mobile} setMobile={setMobile} />
         </WrapperLeftSide>
       </Container>
       <Horizontal />

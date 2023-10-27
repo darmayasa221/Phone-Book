@@ -40,16 +40,13 @@ const HamburgerButtonWrapper = styled.button<
     display: "none",
   },
 }));
-const HamburgerButton: FC<Pick<IHamburgerButton, "setMobile">> = ({
+const HamburgerButton: FC<Pick<IHamburgerButton, "setMobile" | "isActive">> = ({
   setMobile,
+  isActive,
 }) => {
   console.log("hamburger component");
-  const [isActive, setIsActive] = useState<boolean>(false);
   const onClick = (): void =>
-    !isActive ? setIsActive(() => true) : setIsActive(() => false);
-  useEffect(() => {
-    setMobile(isActive);
-  }, [isActive]);
+    !isActive ? setMobile(() => true) : setMobile(() => false);
   return (
     <HamburgerButtonWrapper isActive={isActive} type="button" onClick={onClick}>
       <span />
