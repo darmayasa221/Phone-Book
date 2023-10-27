@@ -1,9 +1,8 @@
-import React, { FC, MouseEventHandler, memo, useCallback } from "react";
+import React, { FC, memo, useCallback } from "react";
 import { TNavBar } from "../../../types/components/navBar";
 import styled from "@emotion/styled";
 import { mq } from "../../../globalStyles/responsive";
 import { MdContactEmergency } from "react-icons/md";
-import { MdPersonAddAlt1 } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { anchor } from "../../../globalStyles/anchor";
 const NavBarContainer = styled.nav<Pick<TNavBar, "isActive">>(

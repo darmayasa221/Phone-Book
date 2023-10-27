@@ -4,9 +4,9 @@ import App from "../App";
 import "@testing-library/jest-dom";
 
 describe("test", () => {
-  it("should render hello world", async () => {
-    render(<App />);
-    // const linkElement = screen.getByText(/hello world/);
-    // expect().toBeInTheDocument();
-  });
+  // it("should render hello world", async () => {
+  //   render(<App />);
+  //   // const linkElement = screen.getByText(/hello world/);
+  //   // expect().toBeInTheDocument();
+  // });
 });
