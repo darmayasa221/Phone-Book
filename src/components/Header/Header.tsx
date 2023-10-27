@@ -39,9 +39,13 @@ const WrapperLeftSide = styled.div({
   },
 });
 const CostumeLink = styled(Link)(anchor, {
-  position: "relative",
-  bottom: "4px",
-  color: "black",
+  display: "none",
+  [mq[1] as string]: {
+    display: "block",
+    position: "relative",
+    bottom: "4px",
+    color: "black",
+  },
 });
 const Header = () => {
   const { pathname } = useLocation();
