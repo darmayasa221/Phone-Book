@@ -20,11 +20,14 @@ const Body = styled.div<TInputSearch>(({ isSearch }) => ({
   top: !isSearch ? "-35px" : "0px",
   transition: "0.3s",
   position: "relative",
-  overflowY: "scroll",
+
   display: "flex",
   flexDirection: "column",
   rowGap: "0.2rem",
   height: !isSearch ? "73vh" : "68vh",
+  "@media only screen and (max-height: 550px)": {
+    overflowY: "scroll",
+  },
 }));
 
 const Footer = styled.footer({

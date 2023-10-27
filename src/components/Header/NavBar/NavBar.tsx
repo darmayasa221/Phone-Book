@@ -5,7 +5,7 @@ import { mq } from "../../../globalStyles/responsive";
 import { MdContactEmergency } from "react-icons/md";
 import { MdPersonAddAlt1 } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { anchor } from "../../../globalStyles/Anchor";
+import { anchor } from "../../../globalStyles/anchor";
 const NavBarContainer = styled.nav<Pick<TNavBar, "isActive">>(
   ({ isActive }) => ({
     position: "absolute",
@@ -77,7 +77,6 @@ const CostumeLink = styled(Link)(anchor, {
 });
 const NavBar: FC<TNavBar> = ({ isActive, setMobileOff }) => {
   console.log("nav bar component");
-  // MouseEvent<HTMLAnchorElement, MouseEvent>
   const onHandler = useCallback((event: any) => {
     event.preventDefault();
     setMobileOff(false);
@@ -85,12 +84,12 @@ const NavBar: FC<TNavBar> = ({ isActive, setMobileOff }) => {
   return (
     <NavBarContainer isActive={isActive as boolean}>
       <UnderList>
-        <List onClick={onHandler}>
+        {/* <List onClick={onHandler}>
           <CostumeLink to={"/"}>
             <p>Create New Contact</p>
             <MdPersonAddAlt1 size={30} />
           </CostumeLink>
-        </List>
+        </List> */}
         <List onClick={onHandler}>
           <CostumeLink to={"/contacts/favorite"}>
             <p>Contact Favorite</p>

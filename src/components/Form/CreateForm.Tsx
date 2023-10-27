@@ -8,14 +8,12 @@ import React, {
   useEffect,
   useState,
 } from "react";
-
 import { useMutation } from "@apollo/client";
 import { ICreateForm, TPhoneInputs } from "../../types/components/Form";
 import { CREATE_CONTACT } from "../../dataProvider/contact";
 import {
   ButtonCount,
   CostumeForm,
-  CostumeInput,
   WrapperBody,
   WrapperButton,
   WrapperCountButtons,
@@ -25,15 +23,26 @@ import {
   WrapperPhoneInput,
   WrapperPhoneInputs,
 } from "../../globalStyles/form";
-
+import CostumeInput from "../CostumeInput/CostumeInput";
+import { TActiveRef, TCostumeInput } from "../../types/components/CostumeInput";
+import { inputValidation } from "../CostumeInput/inputValidation";
 const CreateForm: FC<ICreateForm> = ({ onCloseModal, refetch }) => {
   const [createContact, { loading }] = useMutation(CREATE_CONTACT);
   const [count, setCount] = useState<number>(1);
+  const [message, setMessage] = useState<string>("");
   const [phoneInputs, setPhoneInputs] = useState<TPhoneInputs>([
     { number: "" },
   ]);
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
+  const firstNameInputRef = React.useRef<TActiveRef | null>(null);
+  const lastNameInputRef = React.useRef<TActiveRef | null>(null);
+  const [firstName, setFirstName] = useState<TCostumeInput>({
+    isValid: false,
+    value: "",
+  });
+  const [lastName, setLastName] = useState<TCostumeInput>({
+    isValid: false,
+    value: "",
+  });
   const onHandlerClose = useCallback(
     (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
       event.preventDefault();
@@ -70,13 +79,31 @@ const CreateForm: FC<ICreateForm> = ({ onCloseModal, refetch }) => {
   );
   const onChangeFistName = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      setFirstName(() => event.target.value);
+      const inputValue = inputValidation({
+        action: "FIRST_NAME",
+        value: event.target.value,
+      });
+      setMessage(() => inputValue.message);
+      setFirstName((prev) => ({
+        ...prev,
+        isValid: inputValue.isValid,
+        value: event.target.value,
+      }));
     },
     [],
   );
   const onChangeLastName = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      setLastName(() => event.target.value);
+      const inputValue = inputValidation({
+        action: "LAST_NAME",
+        value: event.target.value,
+      });
+      setMessage(() => inputValue.message);
+      setLastName((prev) => ({
+        ...prev,
+        isValid: inputValue.isValid,
+        value: event.target.value,
+      }));
     },
     [],
   );
@@ -94,8 +121,8 @@ const CreateForm: FC<ICreateForm> = ({ onCloseModal, refetch }) => {
       event.preventDefault();
       await createContact({
         variables: {
-          first_name: firstName,
-          last_name: lastName,
+          first_name: firstName.value,
+          last_name: lastName.value,
           phones: phoneInputs,
         },
       });
@@ -106,12 +133,12 @@ const CreateForm: FC<ICreateForm> = ({ onCloseModal, refetch }) => {
         onCloseModal();
       }
     },
-    [phoneInputs, firstName, lastName],
+    [phoneInputs, lastName],
   );
   useEffect(() => {
     return () => {
-      setFirstName(() => "");
-      setLastName(() => "");
+      setFirstName(() => ({ isValid: false, value: "" }));
+      setLastName(() => ({ isValid: false, value: "" }));
       setPhoneInputs(() => [{ number: "" }]);
       setCount(() => 1);
     };
@@ -126,32 +153,36 @@ const CreateForm: FC<ICreateForm> = ({ onCloseModal, refetch }) => {
         <WrapperBody>
           <label htmlFor="firstName">First Name</label>
           <CostumeInput
+            ref={firstNameInputRef}
             id="firstName"
-            name="firstName"
-            onChange={onChangeFistName}
             type="text"
-            placeholder="Joe"
-            defaultValue={firstName}
+            value={firstName.value}
+            onChange={onChangeFistName}
+            onBlur={onChangeFistName}
+            isValid={firstName.isValid}
+            message={message}
+            placeholder="jhon"
           />
           <label htmlFor="lastName">Last Name</label>
           <CostumeInput
+            ref={lastNameInputRef}
             id="lastName"
-            name="lastName"
-            onChange={onChangeLastName}
             type="text"
-            placeholder="Sona"
-            defaultValue={lastName}
+            value={lastName.value}
+            onChange={onChangeLastName}
+            onBlur={onChangeLastName}
+            isValid={lastName.isValid}
+            message={message}
+            placeholder="bon"
           />
           <label htmlFor="phone">Phone Number</label>
           <WrapperPhoneInputs>
             {phoneInputs?.map((phone, index) => {
-              console.log(phone);
               return (
                 <WrapperPhoneInput key={index}>
                   <p>Phone {index + 1} </p>
                   <CostumeInput
                     id="phone"
-                    name="phone"
                     onChange={(event) => {
                       onChangePhoneNumber(index, event);
                     }}
@@ -173,15 +204,15 @@ const CreateForm: FC<ICreateForm> = ({ onCloseModal, refetch }) => {
               <></>
             )}
           </WrapperCountButtons>
+          <WrapperFooter>
+            <WrapperButton>
+              <button onClick={onHandlerClose}>cancel</button>
+            </WrapperButton>
+            <WrapperButton>
+              <button>save</button>
+            </WrapperButton>
+          </WrapperFooter>
         </WrapperBody>
-        <WrapperFooter>
-          <WrapperButton>
-            <button onClick={onHandlerClose}>cancel</button>
-          </WrapperButton>
-          <WrapperButton>
-            <button>save</button>
-          </WrapperButton>
-        </WrapperFooter>
       </CostumeForm>
     </WrapperFormModal>
   );

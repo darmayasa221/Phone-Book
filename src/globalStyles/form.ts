@@ -34,14 +34,8 @@ const CostumeForm = styled.form({
   flexDirection: "column",
   rowGap: "1rem",
 });
-const CostumeInput = styled.input({
-  padding: "0.5rem ",
-  borderRadius: "5px",
-  outline: "none",
-  border: "1px solid gray",
-});
 const WrapperPhoneInputs = styled.div({
-  overflow: "scroll",
+  overflowY: "scroll",
   height: "7rem",
   display: "flex",
   flexDirection: "column",
@@ -92,7 +86,6 @@ export {
   WrapperBody,
   ButtonCount,
   CostumeForm,
-  CostumeInput,
   WrapperButton,
   WrapperCountButtons,
   WrapperFooter,

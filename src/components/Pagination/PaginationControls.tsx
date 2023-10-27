@@ -23,6 +23,7 @@ const PaginationControls: FC<TPaginationControls> = ({
     setOffsite((prev) => prev + 10);
     setPageNumber((prev) => prev + 1);
   }, [count]);
+  console.log(count);
   return (
     <Container>
       <WrapperButton>
@@ -39,6 +40,7 @@ const PaginationControls: FC<TPaginationControls> = ({
       <WrapperButton>
         <button
           className="bg-blue-500 text-white p-1"
+          disabled={count < limit}
           onClick={onHandlerNextPage}
         >
           next page
