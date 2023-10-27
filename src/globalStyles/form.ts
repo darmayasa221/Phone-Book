@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { mq } from "./responsive";
 
 const WrapperFormModal = styled.div({
-  background: "var(--second-background-color)",
+  background: "white",
   boxShadow: " 0px 6px 10px rgba(0, 0, 0, 0.1)",
   borderRadius: "12px",
   position: "fixed",
