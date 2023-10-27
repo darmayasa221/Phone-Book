@@ -42,6 +42,9 @@ const CostumeLink = styled(Link)(anchor, {
   position: "relative",
   bottom: "4px",
   color: "black",
+  [mq[1] as string]: {
+    display: "none",
+  },
 });
 const Header = () => {
   const { pathname } = useLocation();
