@@ -5,7 +5,6 @@ import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 
 const App = () => {
-  console.log("app");
   return (
     <>
       <Global styles={globalStyle} />

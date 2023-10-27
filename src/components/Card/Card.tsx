@@ -5,7 +5,6 @@ const CostumeCard = styled.div({
   padding: "3px 0",
 });
 const Card: FC<{ children: ReactNode }> = ({ children }) => {
-  console.log("card");
   return <CostumeCard>{children}</CostumeCard>;
 };
 
