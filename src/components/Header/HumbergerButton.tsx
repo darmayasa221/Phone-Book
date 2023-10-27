@@ -44,7 +44,6 @@ const HamburgerButton: FC<Pick<IHamburgerButton, "setMobile" | "isActive">> = ({
   setMobile,
   isActive,
 }) => {
-  console.log("hamburger component");
   const onClick = (): void =>
     !isActive ? setMobile(() => true) : setMobile(() => false);
   return (

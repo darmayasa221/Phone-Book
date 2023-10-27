@@ -56,7 +56,6 @@ const CostumeLink = styled(Link)(anchor, {
   },
 });
 const NavBar: FC<TNavBar> = ({ isActive, setMobileOff }) => {
-  console.log("nav bar component");
   const onHandler = useCallback((event: any) => {
     event.preventDefault();
     setMobileOff(false);

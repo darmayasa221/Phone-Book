@@ -14,7 +14,6 @@ const PaginationControls: FC<TPaginationControls> = ({
   setOffsite,
 }) => {
   const [pageNumber, setPageNumber] = useState<number>(1);
-  console.log("pagination");
   const onHandlerPrevPage = useCallback(() => {
     setOffsite((prev) => prev - 10);
     setPageNumber((prev) => prev - 1);
@@ -23,7 +22,6 @@ const PaginationControls: FC<TPaginationControls> = ({
     setOffsite((prev) => prev + 10);
     setPageNumber((prev) => prev + 1);
   }, [count]);
-  console.log(count);
   return (
     <Container>
       <WrapperButton>

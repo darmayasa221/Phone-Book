@@ -5,7 +5,6 @@ import { TContacts } from "../../types/components/Contact";
 import Items from "../../components/Contact/Items";
 import styled from "@emotion/styled";
 const Body = styled.div({
-  // top: !isSearch ? "-35px" : "0px",
   transition: "0.3s",
   position: "relative",
   overflowY: "scroll",
@@ -16,7 +15,6 @@ const Body = styled.div({
 });
 
 const ContactsFavorite = () => {
-  console.log("contact favorite");
   const dataMemo = useMemo(() => {
     const contactsFavorite = getLocalStorage(
       LOCAL_STORAGE_ITEM.CONTACT_FAVORITE,

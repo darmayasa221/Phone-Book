@@ -9,7 +9,7 @@ import React, {
 import HeaderContext from "./headerContext";
 
 const HeaderContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  console.log("header context provider");
+  ("header context provider");
   const [isSearch, setIsSearch] = useState<boolean>(false);
   const onHandlerSearch = useCallback(() => {
     setIsSearch((prev) => !prev);

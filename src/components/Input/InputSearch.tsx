@@ -28,7 +28,6 @@ const CostumeInputSearch = styled.input({
   fontSize: "18px",
 });
 const InputSearch: FC<IInputSearchProps> = ({ isSearch, setInputSearch }) => {
-  console.log("input search");
   const onChangeInput = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setInputSearch(() => event.target.value);
   }, []);

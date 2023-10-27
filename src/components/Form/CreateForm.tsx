@@ -144,7 +144,6 @@ const CreateForm: FC<ICreateForm> = ({ onCloseModal, refetch }) => {
       setCount(() => 1);
     };
   }, [loading]);
-  console.log("CREATE FORM");
   return (
     <WrapperFormModal>
       <CostumeForm onSubmit={onSubmit}>

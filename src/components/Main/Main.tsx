@@ -5,7 +5,6 @@ const Container = styled.div({
   margin: "0.2rem 0.8rem",
 });
 const Main = () => {
-  console.log("main component");
   return (
     <Container>
       <Outlet />

@@ -141,7 +141,6 @@ const EditForm: FC<IEditForm> = ({ onCloseModal, data, refetch }) => {
       isValid: false,
       value: data?.last_name as string,
     }));
-    console.log(phones);
     setPhoneInputs(() => phones as TPhoneInputs);
     return () => {
       setFirstName(() => ({ isValid: false, value: "" }));
@@ -149,7 +148,6 @@ const EditForm: FC<IEditForm> = ({ onCloseModal, data, refetch }) => {
       setPhoneInputs(() => [{ number: "" }]);
     };
   }, []);
-  console.log("EDIT FORM");
   return (
     <WrapperFormModal>
       <CostumeForm onSubmit={onSubmit}>
