@@ -13,11 +13,15 @@ const WrapperFormModal = styled.div({
   flexDirection: "column",
   padding: "10px 38px",
   [mq[1] as string]: {
-    width: "490px",
-    height: "355px",
+    width: "500px",
+    height: "455px",
   },
 });
-
+const WrapperPhoneLabel = styled.div({
+  display: "flex",
+  alignItems: "center",
+  columnGap: "1rem",
+});
 const WrapperHeader = styled.div({ display: "flex", justifyContent: "center" });
 const WrapperBody = styled.div({
   display: "flex",
@@ -92,4 +96,5 @@ export {
   WrapperHeader,
   WrapperPhoneInput,
   WrapperPhoneInputs,
+  WrapperPhoneLabel,
 };

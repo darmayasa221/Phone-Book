@@ -22,6 +22,7 @@ import {
   WrapperHeader,
   WrapperPhoneInput,
   WrapperPhoneInputs,
+  WrapperPhoneLabel,
 } from "../../globalStyles/form";
 import CostumeInput from "../CostumeInput/CostumeInput";
 import { TActiveRef, TCostumeInput } from "../../types/components/CostumeInput";
@@ -175,7 +176,21 @@ const CreateForm: FC<ICreateForm> = ({ onCloseModal, refetch }) => {
             message={message}
             placeholder="bon"
           />
-          <label htmlFor="phone">Phone Number</label>
+          <WrapperPhoneLabel>
+            <label htmlFor="phone">Phone Number</label>
+            <WrapperCountButtons>
+              <ButtonCount onClick={onHandlerIncreaseInputPhones}>
+                +
+              </ButtonCount>
+              {phoneInputs.length > 1 ? (
+                <ButtonCount onClick={onHandlerDecreaseInputPhones}>
+                  -
+                </ButtonCount>
+              ) : (
+                <></>
+              )}
+            </WrapperCountButtons>
+          </WrapperPhoneLabel>
           <WrapperPhoneInputs>
             {phoneInputs?.map((phone, index) => {
               return (
@@ -194,16 +209,7 @@ const CreateForm: FC<ICreateForm> = ({ onCloseModal, refetch }) => {
               );
             })}
           </WrapperPhoneInputs>
-          <WrapperCountButtons>
-            <ButtonCount onClick={onHandlerIncreaseInputPhones}>+</ButtonCount>
-            {phoneInputs.length > 1 ? (
-              <ButtonCount onClick={onHandlerDecreaseInputPhones}>
-                -
-              </ButtonCount>
-            ) : (
-              <></>
-            )}
-          </WrapperCountButtons>
+
           <WrapperFooter>
             <WrapperButton>
               <button onClick={onHandlerClose}>cancel</button>

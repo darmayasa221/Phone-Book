@@ -20,22 +20,23 @@ const Body = styled.div<TInputSearch>(({ isSearch }) => ({
   top: !isSearch ? "-35px" : "0px",
   transition: "0.3s",
   position: "relative",
-
   display: "flex",
   flexDirection: "column",
   rowGap: "0.2rem",
-  height: !isSearch ? "73vh" : "68vh",
   "@media only screen and (max-height: 550px)": {
     overflowY: "scroll",
+    height: !isSearch ? "73vh" : "68vh",
   },
 }));
 
 const Footer = styled.footer({
-  position: "absolute",
-  width: "100%",
-  bottom: "0",
-  right: "0rem",
-  padding: "0.4rem 0.8rem",
+  "@media only screen and (max-height: 550px)": {
+    position: "absolute",
+    width: "100%",
+    bottom: "0",
+    right: "0rem",
+    padding: "0.4rem 0.8rem",
+  },
 });
 
 const Contacts = () => {
@@ -93,7 +94,6 @@ const Contacts = () => {
     setSelectContactToUpdate((prev) => ({ ...prev, ...item }));
     setModalOn("update");
   }, []);
-
   return (
     <>
       {isModalVisible.modal ? (

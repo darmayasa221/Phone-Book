@@ -1,22 +1,19 @@
 import styled from "@emotion/styled";
-import React, {
-  memo,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { memo, useContext, useState } from "react";
 import { mq } from "../../globalStyles/responsive";
 import HamburgerButton from "./HumbergerButton";
 import { RiUserSearchFill } from "react-icons/ri";
 import NavBar from "./NavBar/NavBar";
 import HeaderContext from "../../store/Header/headerContext";
 import { Link, useLocation } from "react-router-dom";
-import { MdOutlineArrowBack, MdPersonAddAlt1 } from "react-icons/md";
+import {
+  MdContactEmergency,
+  MdOutlineArrowBack,
+  MdPersonAddAlt1,
+} from "react-icons/md";
 import ModalContext from "../../store/Modal/ModalContext";
+import { anchor } from "../../globalStyles/anchor";
 const Container = styled.div({
-  // backgroundColor: "var(--main-background-color)",
   position: "relative",
   zIndex: "10",
   display: "flex",
@@ -37,12 +34,19 @@ const Horizontal = styled.hr({
 const WrapperLeftSide = styled.div({
   display: "flex",
   columnGap: "10px",
+  [mq[1] as string]: {
+    paddingTop: "9px",
+  },
+});
+const CostumeLink = styled(Link)(anchor, {
+  position: "relative",
+  bottom: "4px",
+  color: "black",
 });
 const Header = () => {
   const { pathname } = useLocation();
   const { setModalOn } = useContext(ModalContext);
   const { onHandlerSearch } = useContext(HeaderContext);
-  console.log("header component");
   const [mobile, setMobile] = useState<boolean>(false);
   return (
     <>
@@ -67,6 +71,9 @@ const Header = () => {
                 size={32}
                 style={{ position: "relative", top: "-4px" }}
               />
+              <CostumeLink to={"/contacts/favorite"}>
+                <MdContactEmergency size={32} />
+              </CostumeLink>
             </>
           )}
           <HamburgerButton isActive={mobile} setMobile={setMobile} />

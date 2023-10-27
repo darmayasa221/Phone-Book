@@ -19,11 +19,7 @@ const NavBarContainer = styled.nav<Pick<TNavBar, "isActive">>(
     background: "rgba(36, 36, 36, 0.06)",
     backdropFilter: "blur(10px)",
     [mq[1] as string]: {
-      position: "static",
-      transform: "unset",
-      height: "unset",
-      margin: 0,
-      background: "unset",
+      display: "unset",
     },
   }),
 );
@@ -34,12 +30,6 @@ const UnderList = styled.ul({
   flexDirection: "column",
   rowGap: "10px",
   alignItems: "center",
-  [mq[1] as string]: {
-    justifyContent: "flex-end",
-    flexDirection: "row",
-    margin: 0,
-    columnGap: "20px",
-  },
 });
 const List = styled.li({
   width: "90%",
@@ -51,16 +41,6 @@ const List = styled.li({
   ":hover": {
     borderTop: "2px solid white",
     borderBottom: "2px solid white",
-  },
-  [mq[1] as string]: {
-    border: "none",
-    width: "unset",
-    borderRadius: "6px",
-    ":hover": {
-      cursor: "pointer",
-      padding: "1rem 1.5rem",
-      border: "1px solid white",
-    },
   },
 });
 const CostumeLink = styled(Link)(anchor, {
