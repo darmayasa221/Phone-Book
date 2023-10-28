@@ -7,8 +7,8 @@
     "compile": "graphql-codegen",
     "start": "graphql-codegen -w && webpack server ",
     "satrt:watch": "webpack --watch",
-    "build": " graphql-codegen && NODE_ENV=production webpack",
-    "test": "jest"
+    "build": "graphql-codegen && NODE_ENV=production webpack",
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
