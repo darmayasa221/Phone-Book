@@ -89,8 +89,23 @@ mutation UpdatePhoneNumber($pk_columns: phone_pk_columns_input!, $new_phone_numb
   }
 }
 `);
+
+const GET_CONTACT_BY_ID = gql(/* GraphQL*/ ` 
+query GetContactDetail($id: Int!){
+    contact_by_pk(id: $id) {
+    last_name
+    id
+    first_name
+    created_at
+    phones {
+      number
+    }
+  }
+}
+`);
 export {
   GET_CONTACT,
+  GET_CONTACT_BY_ID,
   DELETE_CONTACT,
   UPDATE_CONTACT,
   UPDATE_NUMBER,
