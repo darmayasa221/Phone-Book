@@ -24,20 +24,10 @@ const ModalContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
     () => setModal((prev) => ({ ...prev, modal: false, action: undefined })),
     [],
   );
-  // const modalChangeChildrenElementOn = useCallback(
-  //   () => setModalChangeChildrenElement(() => true),
-  //   [],
-  // );
-  // const modalChangeChildrenElementOff = useCallback(
-  //   () => setModalChangeChildrenElement(() => false),
-  //   [],
-  // );
   const ModalContextValueFunction = useMemo(
     () => ({
       setModalOn: modalOnHandler,
       setModalOff: modalOffHandler,
-      // setModalChangeChildrenElementOn: modalChangeChildrenElementOn,
-      // setModalChangeChildrenElementOff: modalChangeChildrenElementOff,
     }),
     [],
   );
