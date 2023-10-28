@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback, useEffect, useState } from "react";
+import React, { FC, memo, useCallback, useState } from "react";
 import { TPaginationControls } from "../../types/components/pagination";
 import styled from "@emotion/styled";
 import { WrapperButton } from "../../globalStyles/form";
@@ -25,22 +25,13 @@ const PaginationControls: FC<TPaginationControls> = ({
   return (
     <Container>
       <WrapperButton>
-        <button
-          className="bg-blue-500 text-white p-1"
-          disabled={!Boolean(offsite)}
-          onClick={onHandlerPrevPage}
-        >
+        <button disabled={!Boolean(offsite)} onClick={onHandlerPrevPage}>
           prev page
         </button>
       </WrapperButton>
-
       <div>{pageNumber}</div>
       <WrapperButton>
-        <button
-          className="bg-blue-500 text-white p-1"
-          disabled={count < limit}
-          onClick={onHandlerNextPage}
-        >
+        <button disabled={count < limit} onClick={onHandlerNextPage}>
           next page
         </button>
       </WrapperButton>
